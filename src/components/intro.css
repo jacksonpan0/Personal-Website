@@ -1,0 +1,43 @@
+#Intro {
+    width: 800px;
+    margin: 0 auto;
+    padding: 100px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#Name {
+    font-size: 50px;
+}
+
+#Bio {
+    font-size: 25px;
+    margin-top: 15px;
+}
+
+.IntroButtonsContainer {
+    display: flex;
+    align-items: center;
+}
+
+#ContactButton button {
+    font-family: "Quicksand";
+    color: black;
+    margin-right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(250, 235, 215, 0.8);
+}
+
+.IntroButtonsContainer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.IntroButtonsContainer li {
+    display: inline-block;
+    margin-right: 20px;
+}

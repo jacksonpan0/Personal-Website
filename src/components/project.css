@@ -1,0 +1,44 @@
+#Projects {
+    width: 800px;
+    margin: 0 auto;
+    padding: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#ProjectsHeader {
+    font-size: 50px;
+}
+
+#ProjectsDescription {
+    font-size: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#ProjectsDisplayContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#ProjectsButtonsContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+#ProjectsButtonsContainer button {
+    font-family: "Quicksand";
+    color: black;
+    margin-right: 20px;
+    padding: 10px 20px;
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(250, 235, 215, 0.8);
+}
