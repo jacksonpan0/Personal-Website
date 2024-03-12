@@ -2,37 +2,24 @@ import React, { useState, useEffect } from "react";
 import "./project.css"
 
 const Projects = () => {
-  const [projectsDisplayed, setProjectsDisplayed] = useState([]);
-  const [allProjects, setAllProjects] = useState([]);
-
-  const handleClick = (language) => {
-    if (language === "All") {
-      setProjectsDisplayed(allProjects);
-    } else {
-      const filteredProjects = allProjects.filter(
-        (project) => project.language === language
-      );
-      setProjectsDisplayed(filteredProjects);
-    }
-  };
-
+  const [projects, setProjects] = useState([]);
+  const [filteredProjects, setFilteredProjects] = useState([]);
   useEffect(() => {
-    fetch("/projects.json")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch projects");
-        }
-        return response.json();
+    // Fetch data from JSON file
+    fetch("projects.json")
+      .then(response => response.json())
+      .then(data => {
+        setProjects(data);
+        setFilteredProjects(data); // Initially, display all projects
       })
-      .then((data) => {
-        setProjectsDisplayed(data);
-        setAllProjects(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching projects:", error);
-      });
+      .catch(error => console.error("Error fetching data:", error));
   }, []);
 
+  const handleClick = language => {
+    // Filter projects based on selected language
+    const filtered = projects.filter(project => project.language === language);
+    setFilteredProjects(filtered);
+  };
   return (
     <div id="Projects">
       <div id="ProjectsHeader">Projects</div>
@@ -47,15 +34,12 @@ const Projects = () => {
           <button onClick={() => handleClick("Java")}>Java</button>
           <button onClick={() => handleClick("C")}>C</button>
         </div>
-        {/* Display projects based on the filtered list */}
-        <div id="ProjectsList">
-          {projectsDisplayed.map((project, index) => (
+        <div className="ProjectsList">
+          {filteredProjects.map((project, index) => (
             <div key={index} className="ProjectItem">
-              {/* Render project information */}
-              <p>{project.name}</p>
-              <p>Language: {project.language}</p>
-              {/* Render project image */}
               <img src={project.image} alt={project.name} />
+              <p>{project.name}</p>
+              <p>{project.language}</p>
             </div>
           ))}
         </div>
