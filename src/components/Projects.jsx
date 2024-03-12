@@ -1,24 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./project.css"
+import projectsData from "./projects.json";
 
 const Projects = () => {
-  const [projects, setProjects] = useState([]);
-  const [filteredProjects, setFilteredProjects] = useState([]);
-  useEffect(() => {
-    // Fetch data from JSON file
-    fetch("projects.json")
-      .then(response => response.json())
-      .then(data => {
-        setProjects(data);
-        setFilteredProjects(data); // Initially, display all projects
-      })
-      .catch(error => console.error("Error fetching data:", error));
-  }, []);
+  const [projects, setProjects] = useState(projectsData); // Initializing projects state with the JSON data
 
-  const handleClick = language => {
-    // Filter projects based on selected language
-    const filtered = projects.filter(project => project.language === language);
-    setFilteredProjects(filtered);
+  const handleClick = (language) => {
+    if (language === "All") {
+      setProjects(projectsData); // If "All" is clicked, set projects to all projects
+    } else {
+      const filteredProjects = projectsData.filter(
+        (project) => project.language === language
+      ); // Filter projects based on the selected language
+      setProjects(filteredProjects);
+    }
   };
   return (
     <div id="Projects">
@@ -34,17 +29,17 @@ const Projects = () => {
           <button onClick={() => handleClick("Java")}>Java</button>
           <button onClick={() => handleClick("C")}>C</button>
         </div>
-        <div className="ProjectsList">
-          {filteredProjects.map((project, index) => (
-            <div key={index} className="ProjectItem">
-              <img src={project.image} alt={project.name} />
-              <p>{project.name}</p>
-              <p>{project.language}</p>
-            </div>
-          ))}
-        </div>
       </div>
-    </div>
+      <div>
+        {projects.map((project, index) => (
+          <div key={index}>
+            <h2>{project.name}</h2>
+            <p>Language: {project.language}</p>
+            <img src={project.image} alt={project.name} />
+          </div>
+        ))}
+      </div>
+    </div >
   );
 };
 
