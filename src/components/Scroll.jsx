@@ -4,7 +4,7 @@ import { AiOutlineArrowDown } from "react-icons/ai";
 export const Scroll = () => {
   return (
     <>
-      <Text>down here for projects</Text>
+      <Text>scroll down for projects</Text>
       <AiOutlineArrowDown />
     </>
   );
